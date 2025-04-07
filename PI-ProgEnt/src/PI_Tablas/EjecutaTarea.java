@@ -15,15 +15,16 @@ import java.util.Objects;
  * @since 03/04/2025
  * @author Diego Bermejo Álvarez, Ayman El Hattachi, Nereida Rodríguez Orenes - 1ºDAM
  * Proyecto Intermodular - Entornos de Desarrollo y Programación
+ * Esta clase sirve para asignar tareas a los usuarios e imprimir informes
  */
-public class Ejecuta {
+public class EjecutaTarea {
     private ArrayList<Usuario> ejecutor;
     private Maquina maquina;
     private Tarea tarea;
 
-    public Ejecuta() {}
+    public EjecutaTarea() {}
     
-    public Ejecuta(Maquina maquina, Tarea tarea){
+    public EjecutaTarea(Maquina maquina, Tarea tarea){
         this.maquina = maquina;
         this.tarea = tarea;
         this.ejecutor = new ArrayList<Usuario>();
@@ -85,7 +86,7 @@ public class Ejecuta {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Ejecuta other = (Ejecuta) obj;
+        final EjecutaTarea other = (EjecutaTarea) obj;
         if (!Objects.equals(this.ejecutor, other.ejecutor)) {
             return false;
         }

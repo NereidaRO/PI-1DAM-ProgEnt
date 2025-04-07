@@ -9,6 +9,6 @@ package PI_Tablas;
  * @author Diego Bermejo Álvarez, Ayman El Hattachi, Nereida Rodríguez Orenes - 1ºDAM
  * Proyecto Intermodular - Entornos de Desarrollo y Programación
  */
-public class Reporta {
+public class ReportaAveria {
     
 }
