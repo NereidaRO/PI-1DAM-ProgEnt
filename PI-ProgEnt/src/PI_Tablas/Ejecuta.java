@@ -5,6 +5,8 @@
 package PI_Tablas;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Objects;
 
 /**
  * @since 03/04/2025
@@ -28,6 +30,80 @@ public class Ejecuta {
         //El/los usuarios a los que se asigna la tarea ya están creados
         //Esta función añade 1 usuario, pero se gestiona su repetición con un menú en Main
         this.ejecutor.add(usuario);
+    }
+
+    public Maquina getMaquina() {
+        return maquina;
+    }
+
+    public void setMaquina(Maquina maquina) {
+        this.maquina = maquina;
+    }
+
+    public Tarea getTarea() {
+        return tarea;
+    }
+
+    public void setTarea(Tarea tarea) {
+        this.tarea = tarea;
+    }
+
+    public ArrayList<Usuario> getEjecutor() {
+        return ejecutor;
+    }
+    
+    //Para ver, de manera legible, lo que hay en un ArrayList se imprime el contenido; el getter en sí saca el código interno de Java.
+    public void getAssigned(){
+        //recorrer la colección haciendo toString de cada elemento
+        Iterator<Usuario> iterador = this.ejecutor.iterator();
+        System.out.println("La tarea " + "this.tarea.getID()" + " tiene estos trabajadores asignados: ");
+        while (iterador.hasNext()){
+            System.out.println(iterador.next().toString());
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.ejecutor);
+        hash = 97 * hash + Objects.hashCode(this.maquina);
+        hash = 97 * hash + Objects.hashCode(this.tarea);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Ejecuta other = (Ejecuta) obj;
+        if (!Objects.equals(this.ejecutor, other.ejecutor)) {
+            return false;
+        }
+        if (!Objects.equals(this.maquina, other.maquina)) {
+            return false;
+        }
+        return Objects.equals(this.tarea, other.tarea);
+    }
+
+    @Override
+    public String toString() {
+        Iterator<Usuario> iterador = this.ejecutor.iterator();
+        //imprimir por pantalla los datos, de manera legible
+        System.out.println("Maquina: " + this.maquina.toString());
+        System.out.println("Tarea: " + this.tarea.toString());
+        while (iterador.hasNext()){
+            System.out.println("Usuario(s): " + iterador.next().toString());
+        }
+        
+        //retornar un string (para otros procesos que necesiten este dato)
+        return "Ejecuta{" + "ejecutor=" + this.ejecutor + ", maquina=" + this.maquina + ", tarea=" + this.tarea + '}';
     }
     
     
