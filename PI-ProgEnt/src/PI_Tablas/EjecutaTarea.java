@@ -30,33 +30,62 @@ public class EjecutaTarea {
         this.ejecutor = new ArrayList<Usuario>();
     }
     //Como los usuarios pueden ser uno o más, es conveniente que el administrador asigne una tarea en dos pasos: crearla y asignarla.
+
+    /**
+     *
+     * @param usuario Usuario
+     */
     public void assignUser(Usuario usuario){
         //El/los usuarios a los que se asigna la tarea ya están creados
         //Esta función añade 1 usuario, pero se gestiona su repetición con un menú en Main
         this.ejecutor.add(usuario);
     }
 
+    /**
+     *
+     * @return Maquina
+     */
     public Maquina getMaquina() {
         return maquina;
     }
 
+    /**
+     *
+     * @param maquina Maquina
+     */
     public void setMaquina(Maquina maquina) {
         this.maquina = maquina;
     }
 
+    /**
+     *
+     * @return Tarea
+     */
     public Tarea getTarea() {
         return tarea;
     }
 
+    /**
+     *
+     * @param tarea Tarea
+     */
     public void setTarea(Tarea tarea) {
         this.tarea = tarea;
     }
 
+    /**
+     *
+     * @return ArrayList Usuario
+     */
     public ArrayList<Usuario> getEjecutor() {
         return ejecutor;
     }
     
     //Para ver, de manera legible, lo que hay en un ArrayList se imprime el contenido; el getter en sí saca el código interno de Java.
+
+    /**
+     * Mensaje por consola
+     */
     public void getAssigned(){
         //recorrer la colección haciendo toString de cada elemento
         Iterator<Usuario> iterador = this.ejecutor.iterator();
@@ -66,6 +95,10 @@ public class EjecutaTarea {
         }
     }
 
+    /**
+     *
+     * @return hash
+     */
     @Override
     public int hashCode() {
         int hash = 7;
@@ -75,6 +108,11 @@ public class EjecutaTarea {
         return hash;
     }
 
+    /**
+     *
+     * @param obj
+     * @return boolean
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -96,6 +134,10 @@ public class EjecutaTarea {
         return Objects.equals(this.tarea, other.tarea);
     }
 
+    /**
+     *
+     * @return String y mensaje
+     */
     @Override
     public String toString() {
         Iterator<Usuario> iterador = this.ejecutor.iterator();
@@ -111,6 +153,13 @@ public class EjecutaTarea {
     }
     
     //imprimir el informe (documento)
+
+    /**
+     *
+     * @param ruta
+     * @param nombreFichero
+     * @return fichero
+     */
      public void informeEjecucion(String ruta, String nombreFichero){
         try{
         Iterator<Usuario> iterador = this.ejecutor.iterator();
