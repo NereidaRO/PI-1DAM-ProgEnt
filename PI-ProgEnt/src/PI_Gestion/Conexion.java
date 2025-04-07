@@ -20,12 +20,13 @@ public class Conexion {
     private String usuario;
     private String contrasenya;
 
+    //La conexión solo está habilitada para este usuario: no hace falta un constructor con parámetros
     public Conexion() {
         this.url="jdbc:sqlserver://127.0.0.1:1433;databaseName=PI_BADA;;encrypt=false;trustServerCertificate=true;";
         this.usuario="sa";
         this.contrasenya="k4t4kr0k3r";
     }
-    //La conexión solo está habilitada para este usuario: no hace falta un constructor con parámetros
+    
 
     public String getUrl() {
         return url;
