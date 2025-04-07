@@ -4,6 +4,9 @@
  */
 package PI_Tablas;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Objects;
@@ -106,5 +109,30 @@ public class Ejecuta {
         return "Ejecuta{" + "ejecutor=" + this.ejecutor + ", maquina=" + this.maquina + ", tarea=" + this.tarea + '}';
     }
     
-    
+    //imprimir el informe (documento)
+     public void informeEjecucion(String ruta, String nombreFichero){
+        try{
+        Iterator<Usuario> iterador = this.ejecutor.iterator();
+        FileWriter fw = new FileWriter(ruta + nombreFichero);
+        BufferedWriter bw = new BufferedWriter(fw);
+        bw.write("Informe de ejecución de tarea: ");
+        bw.newLine();
+        bw.write("Máquina: ");
+        bw.write(this.maquina.toString());
+        bw.newLine();
+        bw.write("Tarea: ");
+        bw.write(this.tarea.toString());
+        bw.newLine();
+        bw.write("Usuario(s)");
+        bw.newLine();
+        while (iterador.hasNext()){
+            bw.write(iterador.next().toString());
+            bw.newLine();
+        }
+        bw.close();
+        fw.close();
+        }catch(IOException ioe){
+            System.out.println(ioe);
+        }
+    }
 }
