@@ -7,6 +7,7 @@ package PI_Gestion;
 import PI_Tablas.*;
 import java.util.Objects;
 import java.beans.Statement;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.*;
 import java.util.ArrayList;
@@ -59,12 +60,47 @@ public class Gestion {
     }
     
     //Métodos de búsqueda + traspaso
-    public void buscarUsuario(){
-        Connection c = conexion.getConection();
-    
+    public void buscarUsuario(int idUsuario){
+       
+        
     }
     public void buscarAveria(){}
-    public void buscarMaquina(){}
+    public Maquina buscarMaquina( int idMaquina){
+        try {
+            Connection c = conexion.getConection();
+            java.sql.Statement stmt = c.createStatement();
+            String query = "select MaquinaDescrip, Tipo, Ubicacion, Horas, Estado, FechaManten, UsuarioID "
+            + "from Maquina where MaquinaID ="+ idMaquina;
+            ResultSet resultados = stmt.executeQuery(query);
+            if(resultados.next()){
+            System.out.println("Maquina "+idMaquina+":");
+            System.out.println("Nombre: " + resultados.getString("MaquinaDescrip"));
+            System.out.println("Tipo: " + resultados.getString("Tipo"));
+            System.out.println("Ubicacion: " + resultados.getString("Ubicacion"));
+            System.out.println("Horas: " + resultados.getString("Horas"));
+            System.out.println("Estado: " + resultados.getString("Estado"));
+            System.out.println("FechaManten: " + resultados.getString("FechaManten"));
+            System.out.println("Responsable: " + resultados.getString("UsuarioID"));
+            boolean status;
+            if (resultados.getString("Estado")=="Activa"){
+                status = true;
+            }else{
+                status = false;
+            }
+            Maquina maq = new Maquina(idMaquina, resultados.getString("MaquinaDescrip"), resultados.getString("Tipo"), resultados.getString("Ubicacion"), 
+                    resultados.getInt("Horas"), status,
+			resultados.getDate("FechaManten"), resultados.getInt("UsuarioID"));
+            return maq;
+            }else{
+                System.out.println("No hay máquinas con ese ID");
+                return null;
+            }
+        }catch (SQLException e) {
+            System.out.println("Error: No se pudo conectar a la base de datos.");
+            e.printStackTrace();
+            return null;
+        }
+    }
     public void buscarTarea(){}
     
     //Métodos de listado

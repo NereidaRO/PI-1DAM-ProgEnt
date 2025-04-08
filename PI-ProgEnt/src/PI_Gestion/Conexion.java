@@ -24,8 +24,7 @@ public class Conexion {
     public Conexion() {
         this.url="jdbc:sqlserver://127.0.0.1:1433;databaseName=PI_BADA;;encrypt=false;trustServerCertificate=true;";
         this.usuario="sa";
-        this.contrasenya="k4t4kr0k3r";
-        
+        this.contrasenya="k4t4kr0k3r"; 
     }
     
 

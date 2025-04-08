@@ -22,9 +22,10 @@ public class PIProgEnt {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int opt = 0;
-        Gestion gest;
+        Gestion gest = new Gestion();
+        gest.buscarMaquina(9);
         // Menú inicial:
-        System.out.println("Hola, ¿qué tipo de gestión quiere hacer? \n"
+       /* System.out.println("Hola, ¿qué tipo de gestión quiere hacer? \n"
                 + "1 - Gestionar usuarios \n"
                 + "2 - Gestionar máquinas \n"
                 + "3 - Gestionar averías \n"
@@ -81,6 +82,6 @@ public class PIProgEnt {
                     opt = 0;
             }
         }
-        System.out.println("Ha salido del programa, que pase un buen día");
+        System.out.println("Ha salido del programa, que pase un buen día");*/
     }
 }
