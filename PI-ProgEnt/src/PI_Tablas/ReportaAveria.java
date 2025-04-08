@@ -90,7 +90,7 @@ public class ReportaAveria {
 		this.averia = averia;
 	}
 	
-	public void imprimirReporte() {
+	public void imprimirReporte(String ruta, String nombreFichero) {
 		try{ 
 
 	        FileWriter fw = new FileWriter(ruta + nombreFichero); 
