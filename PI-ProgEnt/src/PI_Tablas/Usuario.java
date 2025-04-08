@@ -64,7 +64,6 @@ public void setFechaNacim(Date fechaNacim) {
 this.fechaNacim = fechaNacim;
 }
 
-
 //Constructores de la clase
 public Usuario(int usuarioID, String nIF, String nombre, String direccion, String email, String rol,
 Date fechaNacim) {
