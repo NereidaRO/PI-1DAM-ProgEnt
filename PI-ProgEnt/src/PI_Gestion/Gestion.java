@@ -4,7 +4,12 @@
  */
 package PI_Gestion;
 
+import PI_Tablas.*;
 import java.util.Objects;
+import java.beans.Statement;
+import java.sql.Connection;
+import java.sql.*;
+import java.util.ArrayList;
 
 /**
  * @since 03/04/2025
@@ -53,20 +58,17 @@ public class Gestion {
         return "Gestion{" + "conexion=" + conexion + '}';
     }
     
-    //Métodos de traspaso de datos
-    public void crearUsuario(){}
-    public void crearAveria(){}
-    public void crearMaquina(){}
-    public void crearTarea(){}
+    //Métodos de búsqueda + traspaso
+    public void buscarUsuario(){
+        Connection c = conexion.getConection();
     
-    //Métodos de búsqueda 
-    public void buscarUsuario(){ /*en estos tener en cuenta si no existe el ID*/}
+    }
     public void buscarAveria(){}
     public void buscarMaquina(){}
     public void buscarTarea(){}
     
     //Métodos de listado
-    public void listaUsuarios(){}
+    public void listaUsuarios(){/*recorrer arrayList que toque*/}
     public void listaAverias(){}
     public void listaMaquinas(){}
     public void listaTareas(){}
@@ -85,4 +87,7 @@ public class Gestion {
     
     //Métodos para eliminar
     public void eliminarUsuario(){ /*no te olvides el where ID es el que toca*/}
+    public void eliminarAveria(){}
+    public void eliminarMaquina(){}
+    public void eliminarTarea(){}
 }

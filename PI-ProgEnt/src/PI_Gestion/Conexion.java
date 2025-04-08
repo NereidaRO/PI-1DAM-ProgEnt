@@ -20,11 +20,12 @@ public class Conexion {
     private String usuario;
     private String contrasenya;
 
-    //La conexión solo está habilitada para este usuario: no hace falta un constructor con parámetros
+    //La conexión solo está habilitada para este usuario, pero hacen falta los parámetros para crear el statement.
     public Conexion() {
         this.url="jdbc:sqlserver://127.0.0.1:1433;databaseName=PI_BADA;;encrypt=false;trustServerCertificate=true;";
         this.usuario="sa";
         this.contrasenya="k4t4kr0k3r";
+        
     }
     
 
@@ -74,7 +75,7 @@ public class Conexion {
         return "Conexion{" + "url=" + url + ", usuario=" + usuario + '}';
     }
     
-    public void getConection(){
+    public Connection getConection(){
         try{
             // Cargar el driver
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -82,13 +83,17 @@ public class Conexion {
             // Conectar a la base de datos
             Connection conexion = DriverManager.getConnection(url, usuario, contrasenya);
             System.out.println("Conexion exitosa a la base de datos.");
+            java.sql.Statement stmt = conexion.createStatement();
+            return conexion;
 
         } catch (ClassNotFoundException e) {
             System.out.println("Error: No se encontró el driver JDBC.");
             e.printStackTrace();
+            return null;
         } catch (SQLException e) {
             System.out.println("Error: No se pudo conectar a la base de datos.");
             e.printStackTrace();
-        } 
+            return null;
+        }
     }
 }
