@@ -25,7 +25,7 @@ public class PIProgEnt {
         Gestion gest = new Gestion();
         gest.buscarMaquina(9);
         // Menú inicial:
-       /* System.out.println("Hola, ¿qué tipo de gestión quiere hacer? \n"
+        System.out.println("Hola, ¿qué tipo de gestión quiere hacer? \n"
                 + "1 - Gestionar usuarios \n"
                 + "2 - Gestionar máquinas \n"
                 + "3 - Gestionar averías \n"
@@ -46,6 +46,25 @@ public class PIProgEnt {
                             + "0 - Salir \n"
                     );
                     opt = sc.nextInt();
+                    
+                    switch(opt){
+                        case 1:
+                            //code
+                            break;
+                        case 2:
+                            //code
+                            break;
+                        case 3:
+                            System.out.println("Escriba el ID del usuario que busca: ");
+                            int idUsuario = sc.nextInt();
+                            gest.buscarUsuario(idUsuario);
+                            opt=0;
+                            break;
+                        case 4:
+                            //code
+                            break;
+                    }
+                    
                     break;
                 case 2:
                     System.out.println("Gestión de máquinas: \n"
@@ -56,6 +75,23 @@ public class PIProgEnt {
                             + "0 - Salir \n"
                     );
                     opt = sc.nextInt();
+                    switch(opt){
+                        case 1:
+                            //code
+                            break;
+                        case 2:
+                            //code
+                            break;
+                        case 3:
+                            System.out.println("Escriba el ID de la máquina que busca: ");
+                            int idMaquina = sc.nextInt();
+                            gest.buscarUsuario(idMaquina);
+                            opt=0;
+                            break;
+                        case 4:
+                            //code
+                            break;
+                    }
                     break;
                 case 3:
                     System.out.println("Gestión de averías: \n"
@@ -66,6 +102,20 @@ public class PIProgEnt {
                             + "0 - Salir \n"
                     );
                     opt = sc.nextInt();
+                    switch(opt){
+                        case 1:
+                            //code
+                            break;
+                        case 2:
+                            //code
+                            break;
+                        case 3:
+                            //code
+                            break;
+                        case 4:
+                            //code
+                            break;
+                    }
                     break;
                 case 4:
                     System.out.println("Gestión de tareas: \n"
@@ -77,11 +127,25 @@ public class PIProgEnt {
                             + "0 - Salir \n"
                     );
                     opt = sc.nextInt();
+                    switch(opt){
+                        case 1:
+                            //code
+                            break;
+                        case 2:
+                            //code
+                            break;
+                        case 3:
+                            //code
+                            break;
+                        case 4:
+                            //code
+                            break;
+                    }
                     break;
                 default:
                     opt = 0;
             }
         }
-        System.out.println("Ha salido del programa, que pase un buen día");*/
+        System.out.println("Ha salido del programa, que pase un buen día");
     }
 }
