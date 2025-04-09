@@ -148,7 +148,6 @@ public class Gestion {
         return null;
         }
 }
-
     public Maquina buscarMaquina( int idMaquina){
         try {
             Connection c = conexion.getConection();
@@ -394,7 +393,43 @@ public class Gestion {
     public void insertarTarea(){}
     
     //Métodos para modificar
-    public void modificarUsuario(){/*hacer paso guiado con Scanner, que modifique todo menos ID*/}
+    public void modificarUsuario(int ID, String NIF, String nombre, String apellidos, String direccion, String email, String rol, Date fechaNacim){
+        //buscar por ID
+        //cambiar por datos nuevos
+        try{
+            Connection c = conexion.getConection();
+            java.sql.Statement stmt = c.createStatement();
+            String fechaStr = fechaNacim.toString();
+            String query = "UPDATE Usuario SET NIF = '" + NIF + 
+               "', nombre = '" + nombre + 
+               "', apellidos = '" + apellidos + 
+               "', direccion = '" + direccion + 
+               "', email = '" + email + 
+               "', rol = '" + rol + 
+               "', fechaNacim = '" + fechaStr + 
+               "' WHERE usuarioID = " + ID;
+            int filasAfectadas = stmt.executeUpdate(query);
+            System.out.println("Modificación hecha con éxito. Filas afectadas: " + filasAfectadas);
+            
+            //Ver el resultado
+            query = "select * from Usuario where usuarioID = '" + ID +"'";
+            ResultSet resultados = stmt.executeQuery(query); 
+            if(resultados.next()){
+                System.out.println("El usuario, en la base de datos, es: ");
+                System.out.println("ID: " + resultados.getString("usuarioID"));
+                System.out.println("NIF: " + resultados.getString("NIF"));
+                System.out.println("Nombre: " + resultados.getString("nombre"));
+                System.out.println("Apellidos: " + resultados.getString("apellidos"));
+                System.out.println("Direccion: " + resultados.getString("direccion"));
+                System.out.println("Email: " + resultados.getString("email"));
+                System.out.println("Rol: " + resultados.getString("rol"));
+                System.out.println("Fecha de Nacimiento: " + resultados.getDate("fechaNacim"));
+            }
+        }catch (SQLException e) {
+            System.out.println("Error: No se pudo conectar a la base de datos.");
+            e.printStackTrace();
+        }
+    }
     public void modificarAveria(){}
     public void modificarMaquina(){}
     public void modificarTarea(){}
