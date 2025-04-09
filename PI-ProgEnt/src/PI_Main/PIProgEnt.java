@@ -25,9 +25,11 @@ public class PIProgEnt {
         Scanner sc = new Scanner(System.in);
         int opt = 0;
         Gestion gest = new Gestion();
-        gest.eliminarUsuario(27);
+        //gest.insertarAveria(Date.valueOf("2025-03-08"), Date.valueOf("2025-04-08"), 1, 3000, "Cuchilla rota", "Buscar otro proveedor", 3);
+        //gest.insertarMaquina("Maquina QRT", "fresadora", "modulo 3", 2500, true, Date.valueOf("2025-06-08"), 5);
+        gest.insertarTarea("Reparar tabletas", "Reparar el soporte de esta aplicacion");
         // Menú inicial:
-       /* System.out.println("Hola, ¿qué tipo de gestión quiere hacer? \n"
+        /*System.out.println("Hola, ¿qué tipo de gestión quiere hacer? \n"
                 + "1 - Gestionar usuarios \n"
                 + "2 - Gestionar máquinas \n"
                 + "3 - Gestionar averías \n"

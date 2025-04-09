@@ -15,10 +15,11 @@ public class Averia {
 private int averiaID;
 private Date FechaReporte;
 private Date fechaReparacion;
-private float duracion;
+private int duracion;
 private int coste;
 private String averiaDescrip;
 private String comentario;
+private int reportador;
 
 //Metodos get y set de las variables
 public int getAveriaID() {
@@ -40,7 +41,7 @@ public void setFechaReparacion(Date fechaReparacion) {
 public float getDuracion() {
     return duracion;
 }
-public void setDuracion(float duracion) {
+public void setDuracion(int duracion) {
     this.duracion = duracion;
 }
 public int getCoste() {
@@ -62,18 +63,26 @@ public void setComentario(String comentario) {
     this.comentario = comentario;
 }
 
+public int getReportador() {
+    return reportador;
+}
+
+public void setReportador(int reportador) {
+    this.reportador = reportador;
+}
 
 //Constructores de la clase
-public Averia(int averiaID, Date fechaReporte, Date fechaReparacion, float duracion, int coste,
-        String averiaDescrip, String comentario) {
+public Averia(int averiaID, Date fechaReporte, Date fechaReparacion, int duracion, int coste,
+        String averiaDescrip, String comentario, int userID) {
     
     this.averiaID = averiaID;
-    FechaReporte = fechaReporte;
+    this.FechaReporte = fechaReporte;
     this.fechaReparacion = fechaReparacion;
     this.duracion = duracion;
     this.coste = coste;
     this.averiaDescrip = averiaDescrip;
     this.comentario = comentario;
+    this.reportador = userID;
 }
 
 public Averia() {

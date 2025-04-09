@@ -127,10 +127,10 @@ public class Gestion {
             System.out.println("Coste: " + resultados.getString("Coste"));
             System.out.println("Descripcion de la Averia: " + resultados.getString("AveriaDescrip"));
             System.out.println("Comentario: " + resultados.getString("Comentario"));
-            System.out.println("Reportador: " + resultados.getString("UsuarioID"));
+            System.out.println("Reportador: " + resultados.getInt("UsuarioID"));
             
-            Averia averia = new Averia(idAveria, resultados.getDate("FechaReporte"), resultados.getDate("FechaReparacion"), resultados.getFloat("Duracion"), resultados.getInt("Coste"),
-            resultados.getString("AveriaDescrip"), resultados.getString("Comentario"));
+            Averia averia = new Averia(idAveria, resultados.getDate("FechaReporte"), resultados.getDate("FechaReparacion"), resultados.getInt("Duracion"), resultados.getInt("Coste"),
+            resultados.getString("AveriaDescrip"), resultados.getString("Comentario"), resultados.getInt("UsuarioID"));
             
             return averia;
             
@@ -388,9 +388,143 @@ public class Gestion {
         }
         
     }
-    public void insertarAveria(){}
-    public void insertarMaquina(){}
-    public void insertarTarea(){}
+    public void insertarAveria( Date fechaReporte, Date fechaReparacion, int duracion, int coste, String averiaDescrip, String comentario, int usuarioID){
+
+        try {
+         int ID;
+         Connection c = conexion.getConection();
+         java.sql.Statement stmt = c.createStatement();
+
+         // Definir las variables para la avería
+         String fechaReporteStr = fechaReporte.toString();
+         String fechaReparacionStr = fechaReparacion.toString();
+
+         System.out.println(fechaReporteStr + " - " + fechaReparacionStr);
+
+         // Query para insertar la avería
+         String query = "insert into Averia (FechaReporte, FechaReparacion, Duracion, Coste, AveriaDescrip, Comentario, UsuarioID) values (" +
+         "'" + fechaReporteStr + "', " +
+         "'" + fechaReparacionStr + "', " +
+         "'" + duracion + "', " +
+         "'" + coste + "', " +
+         "'" + averiaDescrip + "', " +
+         "'" + comentario + "'" + ","
+         + usuarioID  +
+         ")";
+
+         int filasAfectadas = stmt.executeUpdate(query);
+         System.out.println("Inserción hecha con éxito. Filas afectadas: " + filasAfectadas);
+
+         // Ver el resultado
+         query = "select * from Averia where FechaReporte = '" + fechaReporteStr + "'";
+         ResultSet resultados = stmt.executeQuery(query); 
+         if (resultados.next()) {
+         ID = resultados.getInt("AveriaID");
+         System.out.println("La avería, en la base de datos, es: ");
+         System.out.println("ID: " + ID);
+         System.out.println("Fecha de Reporte: " + resultados.getDate("FechaReporte"));
+         System.out.println("Fecha de Reparación: " + resultados.getDate("FechaReparacion"));
+         System.out.println("Duración: " + resultados.getInt("Duracion"));
+         System.out.println("Coste: " + resultados.getDouble("Coste"));
+         System.out.println("Descripción de la Avería: " + resultados.getString("AveriaDescrip"));
+         System.out.println("Comentario: " + resultados.getString("Comentario"));
+
+         // Crear un objeto de la clase Averia con los datos obtenidos
+         Averia nuevaAveria = new Averia(ID, fechaReporte, fechaReparacion, duracion, coste, averiaDescrip, comentario, usuarioID);
+         }
+
+        } catch (SQLException e) {
+         System.out.println("Error: No se pudo conectar a la base de datos.");
+         e.printStackTrace();
+        }
+    }
+
+    public void insertarMaquina(String maquinaDescrip, String tipo, String ubicacion, int horas, boolean estado, Date fechaManten, int usuarioID){
+
+        try {
+         int ID;
+         Connection c = conexion.getConection();
+         java.sql.Statement stmt = c.createStatement();
+
+         // Definir las variables para la máquina
+         String fechaMantenStr = fechaManten.toString();
+
+         System.out.println(fechaMantenStr);
+
+         // Query para insertar la máquina
+         String query = "insert into Maquina (MaquinaDescrip, Tipo, Ubicacion, Horas, Estado, FechaManten, UsuarioID) values (" +
+         "'" + maquinaDescrip + "', " +
+         "'" + tipo + "', " +
+         "'" + ubicacion + "', " +
+         "'" + horas + "', " +
+         "'" + estado + "', " +
+         "'" + fechaMantenStr + "', " +
+         "'" + usuarioID + "'" +
+         ")";
+
+         int filasAfectadas = stmt.executeUpdate(query);
+         System.out.println("Inserción hecha con éxito. Filas afectadas: " + filasAfectadas);
+
+         // Ver el resultado
+         query = "select * from Maquina where MaquinaDescrip = '" + maquinaDescrip + "' and UsuarioID = " + usuarioID;
+         ResultSet resultados = stmt.executeQuery(query); 
+         if (resultados.next()) {
+         ID = resultados.getInt("MaquinaID");
+         System.out.println("La máquina, en la base de datos, es: ");
+         System.out.println("ID: " + ID);
+         System.out.println("Descripción de la Maquina: " + resultados.getString("MaquinaDescrip"));
+         System.out.println("Tipo: " + resultados.getString("Tipo"));
+         System.out.println("Ubicación: " + resultados.getString("Ubicacion"));
+         System.out.println("Horas: " + resultados.getInt("Horas"));
+         System.out.println("Estado: " + resultados.getString("Estado"));
+         System.out.println("Fecha de Mantenimiento: " + resultados.getDate("FechaManten"));
+         System.out.println("UsuarioID: " + resultados.getInt("UsuarioID"));
+
+         // Crear un objeto de la clase Maquina con los datos obtenidos
+         Maquina nuevaMaquina = new Maquina(ID, maquinaDescrip, tipo, ubicacion, horas, estado, fechaManten, usuarioID);
+         }
+
+        } catch (SQLException e) {
+         System.out.println("Error: No se pudo conectar a la base de datos.");
+         e.printStackTrace();
+        }
+    }
+
+    public void insertarTarea(String tareaNombre, String tareaDescrip){
+
+        try {
+         int ID;
+         Connection c = conexion.getConection();
+         java.sql.Statement stmt = c.createStatement();
+
+         // Query para insertar la tarea
+         String query = "insert into Tarea (TareaNombre, TareaDescrip) values (" +
+         "'" + tareaNombre + "', " +
+         "'" + tareaDescrip + "'" +
+         ")";
+
+         int filasAfectadas = stmt.executeUpdate(query);
+         System.out.println("Inserción hecha con éxito. Filas afectadas: " + filasAfectadas);
+
+         // Ver el resultado
+         query = "select * from Tarea where TareaNombre = '" + tareaNombre + "'";
+         ResultSet resultados = stmt.executeQuery(query); 
+         if (resultados.next()) {
+         ID = resultados.getInt("TareaID");
+         System.out.println("La tarea, en la base de datos, es: ");
+         System.out.println("ID: " + ID);
+         System.out.println("Nombre de la Tarea: " + resultados.getString("TareaNombre"));
+         System.out.println("Descripción de la Tarea: " + resultados.getString("TareaDescrip"));
+
+         // Crear un objeto de la clase Tarea con los datos obtenidos
+         Tarea nuevaTarea = new Tarea(ID, tareaNombre, tareaDescrip);
+         }
+
+        } catch (SQLException e) {
+         System.out.println("Error: No se pudo conectar a la base de datos.");
+         e.printStackTrace();
+        }
+    }
     
     //Métodos para modificar
     public void modificarUsuario(int ID, String NIF, String nombre, String apellidos, String direccion, String email, String rol, Date fechaNacim){
