@@ -60,8 +60,95 @@ public class Gestion {
     }
     
     //Métodos de búsqueda + traspaso
-    public void buscarUsuario(int idUsuario){}
-    public void buscarAveria(){}
+    public Usuario buscarUsuario(int idUsuario){
+        try {
+
+            Connection c = conexion.getConection(); 
+
+            java.sql.Statement stmt = c.createStatement();
+
+            String query = "select NIF, nombre, apellidos, direccion, email, rol, fechaNacim "
+            + "from Tarea where usuarioID ="+ idUsuario;
+
+            ResultSet resultados = stmt.executeQuery(query);
+
+            if(resultados.next()){
+            System.out.println("Usuario "+idUsuario+":");
+            System.out.println("NIF: " + resultados.getString("NIF"));
+            System.out.println("Nombre: " + resultados.getString("nombre"));
+            System.out.println("Apellidos: " + resultados.getString("apellidos"));
+            System.out.println("Dirección: " + resultados.getString("direccion"));
+            System.out.println("Correo: " + resultados.getString("email"));
+            System.out.println("Rol: " + resultados.getString("rol"));
+            System.out.println("Fecha de nacimiento: " + resultados.getString("fechaNacim"));
+
+            Usuario usuario = new Usuario(idUsuario, resultados.getString("NIF"), resultados.getString("nombre"),
+            resultados.getString("apellidos"), resultados.getString("direccion"), resultados.getString("email")
+            , resultados.getString("rol"), resultados.getDate("fechaNacim")); 
+
+            return usuario; 
+
+            }else{ 
+
+            System.out.println("No hay usuario con ese ID"); 
+
+            return null; 
+
+            } 
+
+            }catch (SQLException e) { 
+
+            System.out.println("Error: No se pudo conectar a la base de datos."); 
+
+            e.printStackTrace(); 
+            return null;
+            }
+
+    
+    }
+    public Averia buscarAveria(int idAveria){
+
+        try {
+
+            Connection c = conexion.getConection(); 
+
+            java.sql.Statement stmt = c.createStatement();
+
+            String query = "select FechaReporte, FechaReparacion, Duracion, Coste, AveriaDescrip, Comentario, UsuarioID"
+            + "from Averia where AveriaID ="+ idAveria;
+
+            ResultSet resultados = stmt.executeQuery(query);
+
+            if(resultados.next()){
+            System.out.println("Averia "+idAveria+":");
+            System.out.println("Fecha de Reporte: " + resultados.getString("FechaReporte"));
+            System.out.println("Fecha de Reparacion: " + resultados.getString("FechaReparacion"));
+            System.out.println("Duracion: " + resultados.getString("Duracion"));
+            System.out.println("Coste: " + resultados.getString("Coste"));
+            System.out.println("Descripcion de la Averia: " + resultados.getString("AveriaDescrip"));
+            System.out.println("Comentario: " + resultados.getString("Comentario"));
+            System.out.println("Reportador: " + resultados.getString("UsuarioID"));
+            
+            Averia averia = new Averia(idAveria, resultados.getDate("FechaReporte"), resultados.getDate("FechaReparacion"), resultados.getFloat("Duracion"), resultados.getInt("Coste"),
+            resultados.getString("AveriaDescrip"), resultados.getString("Comentario"));
+            
+            return averia;
+            
+            }else{ 
+
+            System.out.println("No hay avería con ese ID"); 
+            return null;
+            } 
+
+        }catch (SQLException e) { 
+
+        System.out.println("Error: No se pudo conectar a la base de datos."); 
+
+        e.printStackTrace(); 
+        return null;
+        }
+}
+
     public Maquina buscarMaquina( int idMaquina){
         try {
             Connection c = conexion.getConection();
@@ -140,7 +227,36 @@ public class Gestion {
     }
     
     //Métodos de listado
-    public void listaUsuarios(){/*recorrer arrayList que toque*/}
+    public void listaUsuarios(){
+        try {
+
+            Connection c = conexion.getConection(); 
+
+            java.sql.Statement stmt = c.createStatement(); 
+
+            String query = "select usuarioID, NIF, nombre, apellidos, direccion, email, rol, fechaNacim from Usuario";
+
+            ResultSet resultados = stmt.executeQuery(query);
+
+            System.out.println("Listado de Usuarios:");
+
+            while(resultados.next()) {
+            System.out.println("UsuarioID: " + resultados.getString("usuarioID") + " - " 
+            + "NIF: "+ resultados.getString("NIF")
+            + "Nombre: " + resultados.getString("nombre") 
+            + "Apellidos: "+ resultados.getString("apellidos")
+            + "Direccion: "+ resultados.getString("direccion")
+            + "Correo: "+ resultados.getString("email")
+            + "Rol: "+ resultados.getString("rol")
+            + "Fecha de nacimiento: "+ resultados.getString("fechaNacim"));
+            }
+        }catch (SQLException e) { 
+
+        System.out.println("Error: No se pudo conectar a la base de datos."); 
+
+        e.printStackTrace(); 
+        }
+    }
     public void listaAverias(){
         try {
 
@@ -171,7 +287,36 @@ public class Gestion {
     }
 
     }
-    public void listaMaquinas(){}
+    public void listaMaquinas(){
+        try {
+
+            Connection c = conexion.getConection(); 
+
+            java.sql.Statement stmt = c.createStatement(); 
+
+            String query = "select MaquinaID, MaquinaDescrip, Tipo, Ubicacion, Horas, Estado, FechaManten, UsuarioID from Maquina";
+
+            ResultSet resultados = stmt.executeQuery(query);
+
+            System.out.println("Listado de Maquina:");
+
+            while(resultados.next()) {
+            System.out.println("MaquinaID: " + resultados.getString("MaquinaID") + " - " 
+            + "Nombre: " + resultados.getString("MaquinaDescrip") 
+            + "Tipo: "+ resultados.getString("Tipo")
+            + "Ubicacion: "+ resultados.getString("Ubicacion")
+            + "Horas de uso: "+ resultados.getString("Horas")
+            + "Estado: "+ resultados.getString("Estado")
+            + "Fecha de mantenimiento: "+ resultados.getString("FechaManten")
+            + "Responsable: "+ resultados.getString("UsuarioID"));
+            }
+        }catch (SQLException e) { 
+
+        System.out.println("Error: No se pudo conectar a la base de datos."); 
+
+        e.printStackTrace(); 
+        }
+    }
     public void listaTareas(){
     
         try {
