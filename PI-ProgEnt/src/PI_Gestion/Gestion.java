@@ -435,7 +435,18 @@ public class Gestion {
     public void modificarTarea(){}
     
     //Métodos para eliminar
-    public void eliminarUsuario(){ /*no te olvides el where ID es el que toca*/}
+    public void eliminarUsuario(int ID){
+        try{
+            Connection c = conexion.getConection();
+            java.sql.Statement stmt = c.createStatement();
+            String query ="delete from Usuario where usuarioID = " + ID;
+            int filasAfectadas = stmt.executeUpdate(query);
+            System.out.println("Eliminación hecha con éxito. Filas afectadas: " + filasAfectadas);
+        }catch (SQLException e) {
+            System.out.println("Error: No se pudo conectar a la base de datos.");
+            e.printStackTrace();
+        }
+    }
     public void eliminarAveria(){}
     public void eliminarMaquina(){}
     public void eliminarTarea(){}

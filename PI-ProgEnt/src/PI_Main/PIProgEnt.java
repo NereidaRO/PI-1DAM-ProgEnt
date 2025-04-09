@@ -25,7 +25,7 @@ public class PIProgEnt {
         Scanner sc = new Scanner(System.in);
         int opt = 0;
         Gestion gest = new Gestion();
-        gest.modificarUsuario( 27, "12444678Z", "AnaMaria", "GarciaGomez", "Calle Atalasia 2", "am@taller.com", "operario", Date.valueOf("2001-01-01"));
+        gest.eliminarUsuario(27);
         // Menú inicial:
        /* System.out.println("Hola, ¿qué tipo de gestión quiere hacer? \n"
                 + "1 - Gestionar usuarios \n"
