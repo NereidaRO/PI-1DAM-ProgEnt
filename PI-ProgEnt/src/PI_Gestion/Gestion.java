@@ -581,7 +581,43 @@ public class Gestion {
             e.printStackTrace();
         }
     }
-    public void eliminarAveria(){}
-    public void eliminarMaquina(){}
-    public void eliminarTarea(){}
+    public void eliminarAveria(int averiaID) {
+        try {
+            Connection c = conexion.getConection();
+            java.sql.Statement stmt = c.createStatement();
+            String query = "DELETE FROM Averia WHERE AveriaID = " + averiaID;
+            int filasAfectadas = stmt.executeUpdate(query);
+            System.out.println("Eliminación hecha con éxito. Filas afectadas: " + filasAfectadas);
+        } catch (SQLException e) {
+            System.out.println("Error: No se pudo conectar a la base de datos.");
+            e.printStackTrace();
+        }
+    }
+
+    public void eliminarMaquina(int maquinaID) {
+        try {
+            Connection c = conexion.getConection();
+            java.sql.Statement stmt = c.createStatement();
+            String query = "DELETE FROM Maquina WHERE maquinaID = " + maquinaID;
+            int filasAfectadas = stmt.executeUpdate(query);
+            System.out.println("Eliminación hecha con éxito. Filas afectadas: " + filasAfectadas);
+        } catch (SQLException e) {
+            System.out.println("Error: No se pudo conectar a la base de datos.");
+            e.printStackTrace();
+        }
+    }
+
+    public void eliminarTarea(int tareaID) {
+        try {
+            Connection c = conexion.getConection();
+            java.sql.Statement stmt = c.createStatement();
+            String query = "DELETE FROM Tarea WHERE TareaID = " + tareaID;
+            int filasAfectadas = stmt.executeUpdate(query);
+            System.out.println("Eliminación hecha con éxito. Filas afectadas: " + filasAfectadas);
+        } catch (SQLException e) {
+            System.out.println("Error: No se pudo conectar a la base de datos.");
+            e.printStackTrace();
+        }
+    }
+
 }
