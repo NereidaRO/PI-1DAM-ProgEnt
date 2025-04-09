@@ -29,6 +29,9 @@ public class PIProgEnt {
         //gest.insertarMaquina("Maquina QRT", "fresadora", "modulo 3", 2500, true, Date.valueOf("2025-06-08"), 5);
         //gest.insertarTarea("Reparar tabletas", "Reparar el soporte de esta aplicacion");
         //gest.eliminarTarea(27);
+        //gest.modificarAveria(3, Date.valueOf("2025-03-08"), Date.valueOf("2025-04-08"), 2, 500, "Torno derretido", "Sin comentarios", 5);
+        //gest.modificarMaquina(6, "Maquina SSD", "Apiladora", "modulo 15", 150, true, Date.valueOf("2025-07-08"), 7);
+        gest.modificarTarea(4, "Afilar", "Afilar las cuchillas de las máquinas de corte");
         // Menú inicial:
         /*System.out.println("Hola, ¿qué tipo de gestión quiere hacer? \n"
                 + "1 - Gestionar usuarios \n"

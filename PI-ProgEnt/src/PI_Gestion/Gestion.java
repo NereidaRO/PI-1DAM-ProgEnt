@@ -564,9 +564,126 @@ public class Gestion {
             e.printStackTrace();
         }
     }
-    public void modificarAveria(){}
-    public void modificarMaquina(){}
-    public void modificarTarea(){}
+    public void modificarAveria(int ID, Date fechaReporte, Date fechaReparacion, int duracion, int coste, String averiaDescrip, String comentario, int usuarioID){
+        // Buscar por ID
+        try{
+            Connection c = conexion.getConection();
+            java.sql.Statement stmt = c.createStatement();
+
+            // Convertir las fechas a string
+            String fechaReporteStr = fechaReporte.toString();
+            String fechaReparacionStr = fechaReparacion.toString();
+
+            // Construir la consulta UPDATE
+            String query = "UPDATE Averia SET FechaReporte = '" + fechaReporteStr + 
+            "', FechaReparacion = '" + fechaReparacionStr + 
+            "', Duracion = " + duracion + 
+            ", Coste = " + coste + 
+            ", AveriaDescrip = '" + averiaDescrip + 
+            "', Comentario = '" + comentario + 
+            "', UsuarioID = " + usuarioID + 
+            " WHERE AveriaID = " + ID;
+
+            // Ejecutar la actualización
+            int filasAfectadas = stmt.executeUpdate(query);
+            System.out.println("Modificación hecha con éxito. Filas afectadas: " + filasAfectadas);
+
+            // Ver el resultado
+            query = "SELECT * FROM Averia WHERE AveriaID = '" + ID + "'";
+            ResultSet resultados = stmt.executeQuery(query);
+            if(resultados.next()){
+            System.out.println("La avería, en la base de datos, es: ");
+            System.out.println("ID: " + resultados.getString("AveriaID"));
+            System.out.println("Fecha de Reporte: " + resultados.getDate("FechaReporte"));
+            System.out.println("Fecha de Reparación: " + resultados.getDate("FechaReparacion"));
+            System.out.println("Duración: " + resultados.getInt("Duracion"));
+            System.out.println("Coste: " + resultados.getDouble("Coste"));
+            System.out.println("Descripción de la Avería: " + resultados.getString("AveriaDescrip"));
+            System.out.println("Comentario: " + resultados.getString("Comentario"));
+            System.out.println("UsuarioID: " + resultados.getInt("UsuarioID"));
+            }
+
+            }catch (SQLException e) {
+                System.out.println("Error: No se pudo conectar a la base de datos.");
+                e.printStackTrace();
+            }
+    }
+
+    public void modificarMaquina(int maquinaID, String maquinaDescrip, String tipo, String ubicacion, int horas, boolean estado, Date fechaManten, int responsableID) {
+        // Buscar por maquinaID
+        try {
+            Connection c = conexion.getConection();
+            java.sql.Statement stmt = c.createStatement();
+
+            // Convertir la fecha a string
+            String fechaMantenStr = fechaManten.toString();
+
+            // Construir la consulta UPDATE
+            String query = "UPDATE Maquina SET maquinaDescrip = '" + maquinaDescrip + 
+                           "', tipo = '" + tipo + 
+                           "', ubicacion = '" + ubicacion + 
+                           "', horas = " + horas + 
+                           ", estado = " + (estado ? 1 : 0) + 
+                           ", fechaManten = '" + fechaMantenStr + 
+                           "', usuarioID = " + responsableID + 
+                           " WHERE maquinaID = " + maquinaID;
+
+            // Ejecutar la actualización
+            int filasAfectadas = stmt.executeUpdate(query);
+            System.out.println("Modificación hecha con éxito. Filas afectadas: " + filasAfectadas);
+
+            // Ver el resultado
+            query = "SELECT * FROM Maquina WHERE maquinaID = '" + maquinaID + "'";
+            ResultSet resultados = stmt.executeQuery(query);
+            if (resultados.next()) {
+                System.out.println("La máquina, en la base de datos, es: ");
+                System.out.println("ID: " + resultados.getString("maquinaID"));
+                System.out.println("Descripción de la máquina: " + resultados.getString("maquinaDescrip"));
+                System.out.println("Tipo: " + resultados.getString("tipo"));
+                System.out.println("Ubicación: " + resultados.getString("ubicacion"));
+                System.out.println("Horas de uso: " + resultados.getInt("horas"));
+                System.out.println("Estado: " + (resultados.getInt("estado") == 1 ? "Activo" : "Inactivo"));
+                System.out.println("Fecha de Mantenimiento: " + resultados.getDate("fechaManten"));
+                System.out.println("ResponsableID: " + resultados.getInt("usuarioID"));
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error: No se pudo conectar a la base de datos.");
+            e.printStackTrace();
+        }
+    }
+
+   public void modificarTarea(int tareaID, String tareaNombre, String tareaDescrip) {
+        // Buscar por tareaID y cambiar por los nuevos datos
+        try {
+            Connection c = conexion.getConection();
+            java.sql.Statement stmt = c.createStatement();
+
+            // Construir la consulta UPDATE
+            String query = "UPDATE Tarea SET TareaNombre = '" + tareaNombre + 
+                           "', TareaDescrip = '" + tareaDescrip + 
+                           "' WHERE TareaID = " + tareaID;
+
+            // Ejecutar la actualización
+            int filasAfectadas = stmt.executeUpdate(query);
+            System.out.println("Modificación hecha con éxito. Filas afectadas: " + filasAfectadas);
+
+            // Ver el resultado
+            query = "SELECT * FROM Tarea WHERE TareaID = " + tareaID;
+            ResultSet resultados = stmt.executeQuery(query);
+            if (resultados.next()) {
+                System.out.println("La tarea, en la base de datos, es: ");
+                System.out.println("ID: " + resultados.getString("TareaID"));
+                System.out.println("Nombre de la tarea: " + resultados.getString("TareaNombre"));
+                System.out.println("Descripción de la tarea: " + resultados.getString("TareaDescrip"));
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error: No se pudo conectar a la base de datos.");
+            e.printStackTrace();
+        }
+    }
+
     
     //Métodos para eliminar
     public void eliminarUsuario(int ID){
