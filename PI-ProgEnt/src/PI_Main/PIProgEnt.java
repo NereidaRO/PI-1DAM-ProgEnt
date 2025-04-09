@@ -4,6 +4,8 @@
  */
 package PI_Main;
 import PI_Gestion.*;
+import PI_Tablas.*;
+import java.sql.Date;
 import java.util.Scanner;
 /**
  * @since 03/04/2025
@@ -23,9 +25,9 @@ public class PIProgEnt {
         Scanner sc = new Scanner(System.in);
         int opt = 0;
         Gestion gest = new Gestion();
-        gest.buscarMaquina(9);
+        gest.insertarUsuario("12444678Z", "LuisaMaria", "GarciaSanchez", "Calle Atalasia 3", "luisa@taller.com", "admin", Date.valueOf("2000-01-01"));
         // Menú inicial:
-        System.out.println("Hola, ¿qué tipo de gestión quiere hacer? \n"
+       /* System.out.println("Hola, ¿qué tipo de gestión quiere hacer? \n"
                 + "1 - Gestionar usuarios \n"
                 + "2 - Gestionar máquinas \n"
                 + "3 - Gestionar averías \n"
@@ -49,7 +51,31 @@ public class PIProgEnt {
                     
                     switch(opt){
                         case 1:
-                            //code
+                            String NIF;
+                            String nombre;
+                            String apellidos;
+                            String direccion;
+                            String email;
+                            String rol;
+                            java.sql.Date fechaNacim;
+                            
+                            System.out.println("Escriba el NIF: ");
+                            NIF = sc.next();
+                            System.out.println("Escriba el nombre (JoseAntonio): ");
+                            nombre = sc.next();
+                            System.out.println("Escriba los apellidos (GarciaGomez): ");
+                            apellidos = sc.next();
+                            System.out.println("Escriba la dirección: ");
+                            direccion = sc.next();
+                            System.out.println("Escriba el email: ");
+                            email = sc.next();
+                            System.out.println("Escriba el rol (admin, operario, mecanico): ");
+                            rol = sc.next();
+                            System.out.println("Escriba la fecha de nacimiento (aaaa-mm-dd): ");
+                            fechaNacim = java.sql.Date.valueOf(sc.next());  
+                            
+                            gest.insertarUsuario(NIF, nombre, apellidos, direccion, email, rol, fechaNacim);
+                            
                             break;
                         case 2:
                             //code
@@ -113,7 +139,8 @@ public class PIProgEnt {
                             //code
                             break;
                         case 4:
-                            //code
+                            gest.listaAverias();
+                            opt=0;
                             break;
                     }
                     break;
@@ -135,10 +162,14 @@ public class PIProgEnt {
                             //code
                             break;
                         case 3:
-                            //code
+                            System.out.println("Escriba el ID de la tarea que busca: ");
+                            int idTarea = sc.nextInt();
+                            gest.buscarTarea(idTarea);
+                            opt=0;
                             break;
                         case 4:
-                            //code
+                            gest.listaTareas();
+                            opt=0;
                             break;
                     }
                     break;
@@ -146,6 +177,6 @@ public class PIProgEnt {
                     opt = 0;
             }
         }
-        System.out.println("Ha salido del programa, que pase un buen día");
+        System.out.println("Ha salido del programa, que pase un buen día");*/
     }
 }

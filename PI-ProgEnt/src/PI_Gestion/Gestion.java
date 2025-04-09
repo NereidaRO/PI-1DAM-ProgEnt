@@ -60,10 +60,7 @@ public class Gestion {
     }
     
     //Métodos de búsqueda + traspaso
-    public void buscarUsuario(int idUsuario){
-       
-        
-    }
+    public void buscarUsuario(int idUsuario){}
     public void buscarAveria(){}
     public Maquina buscarMaquina( int idMaquina){
         try {
@@ -101,16 +98,152 @@ public class Gestion {
             return null;
         }
     }
-    public void buscarTarea(){}
+    public Tarea buscarTarea(int idTarea){
+        try {
+
+            Connection c = conexion.getConection(); 
+
+            java.sql.Statement stmt = c.createStatement();
+
+            String query = "select TareaNombre, TareaDescrip "
+            + "from Tarea where TareaID ="+ idTarea;
+
+            ResultSet resultados = stmt.executeQuery(query);
+
+            if(resultados.next()){
+            System.out.println("Tarea "+idTarea+":");
+
+            System.out.println("Nombre: " + resultados.getString("TareaNombre"));
+            System.out.println("Descripción: " + resultados.getString("TareaDescrip"));
+
+            Tarea tarea = new Tarea(idTarea, resultados.getString("TareaNombre"), resultados.getString("TareaDescrip")); 
+
+            return tarea; 
+
+            }else{ 
+
+            System.out.println("No hay tarea con ese ID"); 
+
+            return null; 
+
+            } 
+
+        }catch (SQLException e) { 
+
+        System.out.println("Error: No se pudo conectar a la base de datos."); 
+
+        e.printStackTrace(); 
+        return null;
+    }
+
+    
+    }
     
     //Métodos de listado
     public void listaUsuarios(){/*recorrer arrayList que toque*/}
-    public void listaAverias(){}
+    public void listaAverias(){
+        try {
+
+        Connection c = conexion.getConection(); 
+
+        java.sql.Statement stmt = c.createStatement(); 
+        String query = "select AveriaID, FechaReporte, FechaReparacion, Duracion, Coste, AveriaDescrip, Comentario, UsuarioID from Averia";
+
+        ResultSet resultados = stmt.executeQuery(query); 
+
+        System.out.println("Listado de Averias:");
+
+        while(resultados.next()) {
+        System.out.println("AveriaID: " + resultados.getString("AveriaID") + " - " 
+        + "Fecha de Reporte: " + resultados.getString("FechaReporte")
+        + "Fecha de Reaparación: "+ resultados.getString("FechaReparacion")
+        + "Duración: "+ resultados.getString("Duracion")
+        + "Coste: "+ resultados.getString("Coste")
+        + "Descripcion de averia: "+ resultados.getString("AveriaDescrip")
+        + "Comentario: "+ resultados.getString("Comentario")
+        + "Reportante: "+ resultados.getString("UsuarioID"));
+        }
+        }catch (SQLException e) { 
+
+        System.out.println("Error: No se pudo conectar a la base de datos."); 
+
+        e.printStackTrace(); 
+    }
+
+    }
     public void listaMaquinas(){}
-    public void listaTareas(){}
+    public void listaTareas(){
+    
+        try {
+
+            Connection c = conexion.getConection(); 
+
+            java.sql.Statement stmt = c.createStatement(); 
+
+            String query = "select TareaID, TareaNombre, TareaDescrip from Tarea";
+
+            ResultSet resultados = stmt.executeQuery(query);
+
+            System.out.println("Listado de Tareas:");
+
+            while(resultados.next()) {
+            System.out.println("TareaID: " + resultados.getString("TareaID") + " - " 
+            + "Nombre de la tarea: " + resultados.getString("TareaNombre")
+            + "Descripcion de la tarea: "+ resultados.getString("TareaDescrip"));
+            }
+            }catch (SQLException e) { 
+
+            System.out.println("Error: No se pudo conectar a la base de datos."); 
+
+            e.printStackTrace(); 
+        }
+
+    }
     
     //Métodos de creación
-    public void insertarUsuario(){/*cuidado con los ID, son autoincrementales*/}
+    public void insertarUsuario(String NIF, String nombre, String apellidos, String direccion, String email, String rol, Date fechaNacim){
+        /*los ID son autoincrementales, no se ponen en la inserción*/
+        try{
+            int ID;
+            Connection c = conexion.getConection();
+            java.sql.Statement stmt = c.createStatement();
+            String fechaStr = fechaNacim.toString();
+            System.out.println(fechaStr);
+            String query = "insert into Usuario (NIF, nombre, apellidos, direccion, email, rol, fechaNacim) values (" +
+                "'" + NIF + "', " +
+                "'" + nombre + "', " +
+                "'" + apellidos + "', " +
+                "'" + direccion + "', " +
+                "'" + email + "', " +
+                "'" + rol + "', " +
+                "'" + fechaStr + "'" +
+            ")";
+            int filasAfectadas = stmt.executeUpdate(query);
+            System.out.println("Inserción hecha con éxito. Filas afectadas: " + filasAfectadas);
+
+            //Ver el resultado
+            query = "select * from Usuario where NIF = '" + NIF +"'";
+            ResultSet resultados = stmt.executeQuery(query);   
+            if(resultados.next()){
+                ID = resultados.getInt("usuarioID");
+                System.out.println("El usuario, en la base de datos, es: ");
+                System.out.println("ID: " + ID);
+                System.out.println("NIF: " + resultados.getString("NIF"));
+                System.out.println("Nombre: " + resultados.getString("nombre"));
+                System.out.println("Apellidos: " + resultados.getString("apellidos"));
+                System.out.println("Direccion: " + resultados.getString("direccion"));
+                System.out.println("Email: " + resultados.getString("email"));
+                System.out.println("Rol: " + resultados.getString("rol"));
+                System.out.println("Fecha de Nacimiento: " + resultados.getDate("fechaNacim"));
+
+                Usuario nUs = new Usuario(ID, NIF, nombre, apellidos, direccion, email, rol, fechaNacim);
+            }
+        }catch (SQLException e) {
+            System.out.println("Error: No se pudo conectar a la base de datos.");
+            e.printStackTrace();
+        }
+        
+    }
     public void insertarAveria(){}
     public void insertarMaquina(){}
     public void insertarTarea(){}

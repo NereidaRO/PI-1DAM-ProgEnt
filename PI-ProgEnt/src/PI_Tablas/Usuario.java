@@ -18,6 +18,7 @@ public class Usuario {
 private int usuarioID;
 private String NIF;
 private String nombre;
+private String apellidos;
 private String direccion;
 private String email;
 private String rol;
@@ -39,6 +40,15 @@ return nombre;
 public void setNombre(String nombre) {
 this.nombre = nombre;
 }
+
+public String getApellidos() {
+    return apellidos;
+}
+
+public void setApellidos(String apellidos) {
+    this.apellidos = apellidos;
+}
+
 public String getDireccion() {
 return direccion;
 }
@@ -65,12 +75,13 @@ this.fechaNacim = fechaNacim;
 }
 
 //Constructores de la clase
-public Usuario(int usuarioID, String nIF, String nombre, String direccion, String email, String rol,
+public Usuario(int usuarioID, String nIF, String nombre,String apellidos, String direccion, String email, String rol,
 Date fechaNacim) {
 
 this.usuarioID = usuarioID;
-NIF = nIF;
+this.NIF = nIF;
 this.nombre = nombre;
+this.apellidos = apellidos;
 this.direccion = direccion;
 this.email = email;
 this.rol = rol;
@@ -80,8 +91,9 @@ this.fechaNacim = fechaNacim;
 public Usuario() {
 
 this.usuarioID = 0;
-NIF = "";
+this.NIF = "";
 this.nombre = "";
+this.apellidos="";
 this.direccion = "";
 this.email = "";
 this.rol = "";
@@ -90,7 +102,7 @@ this.rol = "";
 //Metodos hashCode y equals para comparar usuarios
 @Override
 public int hashCode() {
-return Objects.hash(NIF, direccion, email, fechaNacim, nombre, rol, usuarioID);
+return Objects.hash(NIF, direccion, email, fechaNacim, nombre, apellidos, rol, usuarioID);
 }
 
 @Override
@@ -104,14 +116,14 @@ return false;
 Usuario other = (Usuario) obj;
 return Objects.equals(NIF, other.NIF) && Objects.equals(direccion, other.direccion)
 && Objects.equals(email, other.email) && Objects.equals(fechaNacim, other.fechaNacim)
-&& Objects.equals(nombre, other.nombre) && Objects.equals(rol, other.rol)
+&& Objects.equals(nombre, other.nombre) && Objects.equals(rol, other.rol) && Objects.equals(apellidos, other.apellidos)
 && usuarioID == other.usuarioID;
 }
 
 //Metodo toString
 @Override
 public String toString() {
-return "Usuario [usuarioID=" + usuarioID + ", NIF=" + NIF + ", nombre=" + nombre + ", direccion=" + direccion
+return "Usuario [usuarioID=" + usuarioID + ", NIF=" + NIF + ", nombre=" + nombre + ", apellidos: " + apellidos + ", direccion=" + direccion
 + ", email=" + email + ", rol=" + rol + ", fechaNacim=" + fechaNacim + "]";
 }
 
