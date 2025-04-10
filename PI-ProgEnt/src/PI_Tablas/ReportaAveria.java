@@ -22,38 +22,73 @@ public class ReportaAveria {
 	
 	//getters y setters
 
+    /**
+     *
+     * @return obj
+     */
+
 	public Usuario getReportador() {
 		return reportador;
 	}
 
-	public void setReportador(Usuario reportador) {
+    /**
+     *
+     * @param reportador
+     */
+    public void setReportador(Usuario reportador) {
 		this.reportador = reportador;
 	}
 
-	public Maquina getMaquina() {
+    /**
+     *
+     * @return obj
+     */
+    public Maquina getMaquina() {
 		return maquina;
 	}
 
-	public void setMaquina(Maquina maquina) {
+    /**
+     *
+     * @param maquina
+     */
+    public void setMaquina(Maquina maquina) {
 		this.maquina = maquina;
 	}
 
-	public Averia getAveria() {
+    /**
+     *
+     * @return obj
+     */
+    public Averia getAveria() {
 		return averia;
 	}
 
-	public void setAveria(Averia averia) {
+    /**
+     *
+     * @param averia
+     */
+    public void setAveria(Averia averia) {
 		this.averia = averia;
 	}
 
 	
 	//hashcode y equals
+
+    /**
+     *
+     * @return int
+     */
 	@Override
 	public int hashCode() {
 		return Objects.hash(averia, maquina, reportador);
 	}
 
-	@Override
+    /**
+     *
+     * @param obj
+     * @return boolean
+     */
+    @Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
@@ -68,6 +103,11 @@ public class ReportaAveria {
 
 	
 	//toString
+
+    /**
+     *
+     * @return String
+     */
 	@Override
 	public String toString() {
 		return "ReportaAveria [reportador=" + reportador + ", maquina=" + maquina + ", averia=" + averia + "]";
@@ -90,7 +130,13 @@ public class ReportaAveria {
 		this.averia = averia;
 	}
 	
-	public void imprimirReporte(String ruta, String nombreFichero) {
+    /**
+     *
+     * @param ruta
+     * @param nombreFichero
+     * @return file
+     */
+    public void imprimirReporte(String ruta, String nombreFichero) {
 		try{ 
 
 	        FileWriter fw = new FileWriter(ruta + nombreFichero); 

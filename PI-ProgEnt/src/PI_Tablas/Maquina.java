@@ -52,88 +52,141 @@ public class Maquina {
 
 
 	//getters y setters
+
+    /**
+     *
+     * @return int
+     */
 	public int getMaquinaID() {
 		return maquinaID;
 	}
 
-
-	public void setMaquinaID(int maquinaID) {
+    /**
+     *
+     * @param maquinaID
+     */
+    public void setMaquinaID(int maquinaID) {
 		this.maquinaID = maquinaID;
 	}
 
-
-	public String getMaquinaDescrip() {
+    /**
+     *
+     * @return String
+     */
+    public String getMaquinaDescrip() {
 		return maquinaDescrip;
 	}
 
-
-	public void setMaquinaDescrip(String maquinaDescrip) {
+    /**
+     *
+     * @param maquinaDescrip
+     */
+    public void setMaquinaDescrip(String maquinaDescrip) {
 		this.maquinaDescrip = maquinaDescrip;
 	}
 
-
-	public String getTipo() {
+    /**
+     *
+     * @return String
+     */
+    public String getTipo() {
 		return tipo;
 	}
 
-
-	public void setTipo(String tipo) {
+    /**
+     *
+     * @param tipo
+     */
+    public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
 
-
-	public String getUbicacion() {
+    /**
+     *
+     * @return String
+     */
+    public String getUbicacion() {
 		return ubicacion;
 	}
 
-
-	public void setUbicacion(String ubicacion) {
+    /**
+     *
+     * @param ubicacion
+     */
+    public void setUbicacion(String ubicacion) {
 		this.ubicacion = ubicacion;
 	}
 
-
-	public int getHoras() {
+    /**
+     *
+     * @return int
+     */
+    public int getHoras() {
 		return horas;
 	}
 
-
-	public void setHoras(int horas) {
+    /**
+     *
+     * @param horas
+     */
+    public void setHoras(int horas) {
 		this.horas = horas;
 	}
 
-
-	public boolean isEstado() {
+    /**
+     *
+     * @return boolean
+     */
+    public boolean isEstado() {
 		return estado;
 	}
 
-
-	public void setEstado(boolean estado) {
+    /**
+     *
+     * @param estado
+     */
+    public void setEstado(boolean estado) {
 		this.estado = estado;
 	}
 
-
-	public Date getFechaManten() {
+    /**
+     *
+     * @return Date
+     */
+    public Date getFechaManten() {
 		return fechaManten;
 	}
 
-
-	public void setFechaManten(Date fechaManten) {
+    /**
+     *
+     * @param fechaManten
+     */
+    public void setFechaManten(Date fechaManten) {
 		this.fechaManten = fechaManten;
 	}
 
-
-	public int getResponsableID() {
+    /**
+     *
+     * @return int
+     */
+    public int getResponsableID() {
 		return responsableID;
 	}
 
-
-	public void setResponsableID(int responsableID) {
+    /**
+     *
+     * @param responsableID
+     */
+    public void setResponsableID(int responsableID) {
 		this.responsableID = responsableID;
 	}
 
-
-
 	//toString
+
+    /**
+     *
+     * @return String
+     */
 	@Override
 	public String toString() {
 		return "Maquina [maquinaID=" + maquinaID + ", maquinaDescrip=" + maquinaDescrip + ", tipo=" + tipo
@@ -143,13 +196,22 @@ public class Maquina {
 
 
 	//hashcode y equals
+
+    /**
+     *
+     * @return int
+     */
 	@Override
 	public int hashCode() {
 		return Objects.hash(estado, fechaManten, horas, maquinaDescrip, maquinaID, responsableID, tipo, ubicacion);
 	}
 
-
-	@Override
+    /**
+     *
+     * @param obj
+     * @return boolean
+     */
+    @Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
@@ -163,8 +225,6 @@ public class Maquina {
 				&& responsableID == other.responsableID && Objects.equals(tipo, other.tipo)
 				&& Objects.equals(ubicacion, other.ubicacion);
 	}
-	
-	
-	
+
 }
 

@@ -25,52 +25,124 @@ private String rol;
 private Date fechaNacim;
 
 //Metodos get y set de las variables
+
+    /**
+     *
+     * @return int
+     */
 public int getUsuarioID() {
 return usuarioID;
 }
-public String getNIF() {
+
+    /**
+     *
+     * @return String
+     */
+    public String getNIF() {
 return NIF;
 }
-public void setNIF(String nIF) {
+
+    /**
+     *
+     * @param nIF
+     */
+    public void setNIF(String nIF) {
 NIF = nIF;
 }
-public String getNombre() {
+
+    /**
+     *
+     * @return String
+     */
+    public String getNombre() {
 return nombre;
 }
-public void setNombre(String nombre) {
+
+    /**
+     *
+     * @param nombre
+     */
+    public void setNombre(String nombre) {
 this.nombre = nombre;
 }
 
-public String getApellidos() {
+    /**
+     *
+     * @return String
+     */
+    public String getApellidos() {
     return apellidos;
 }
 
-public void setApellidos(String apellidos) {
+    /**
+     *
+     * @param apellidos
+     */
+    public void setApellidos(String apellidos) {
     this.apellidos = apellidos;
 }
 
-public String getDireccion() {
+    /**
+     *
+     * @return String
+     */
+    public String getDireccion() {
 return direccion;
 }
-public void setDireccion(String direccion) {
+
+    /**
+     *
+     * @param direccion
+     */
+    public void setDireccion(String direccion) {
 this.direccion = direccion;
 }
-public String getEmail() {
+
+    /**
+     *
+     * @return String
+     */
+    public String getEmail() {
 return email;
 }
-public void setEmail(String email) {
+
+    /**
+     *
+     * @param email
+     */
+    public void setEmail(String email) {
 this.email = email;
 }
-public String getRol() {
+
+    /**
+     *
+     * @return String
+     */
+    public String getRol() {
 return rol;
 }
-public void setRol(String rol) {
+
+    /**
+     *
+     * @param rol
+     */
+    public void setRol(String rol) {
 this.rol = rol;
 }
-public Date getFechaNacim() {
+
+    /**
+     *
+     * @return Date
+     */
+    public Date getFechaNacim() {
 return fechaNacim;
 }
-public void setFechaNacim(Date fechaNacim) {
+
+    /**
+     *
+     * @param fechaNacim
+     */
+    public void setFechaNacim(Date fechaNacim) {
 this.fechaNacim = fechaNacim;
 }
 
@@ -100,12 +172,22 @@ this.rol = "";
 }
 
 //Metodos hashCode y equals para comparar usuarios
+
+    /**
+     *
+     * @return int
+     */
 @Override
 public int hashCode() {
 return Objects.hash(NIF, direccion, email, fechaNacim, nombre, apellidos, rol, usuarioID);
 }
 
-@Override
+    /**
+     *
+     * @param obj
+     * @return boolean
+     */
+    @Override
 public boolean equals(Object obj) {
 if (this == obj)
 return true;
@@ -121,6 +203,11 @@ return Objects.equals(NIF, other.NIF) && Objects.equals(direccion, other.direcci
 }
 
 //Metodo toString
+
+    /**
+     *
+     * @return String
+     */
 @Override
 public String toString() {
 return "Usuario [usuarioID=" + usuarioID + ", NIF=" + NIF + ", nombre=" + nombre + ", apellidos: " + apellidos + ", direccion=" + direccion

@@ -33,32 +33,62 @@ public class Tarea {
 	}
 
 	//Getters y setters
+
+    /**
+     *
+     * @return int
+     */
 	public int getTareaID() {
 		return tareaID;
 	}
 
-	public void setTareaID(int tareaID) {
+    /**
+     *
+     * @param tareaID
+     */
+    public void setTareaID(int tareaID) {
 		this.tareaID = tareaID;
 	}
 
-	public String getTareaNombre() {
+    /**
+     *
+     * @return String
+     */
+    public String getTareaNombre() {
 		return tareaNombre;
 	}
 
-	public void setTareaNombre(String tareaNombre) {
+    /**
+     *
+     * @param tareaNombre
+     */
+    public void setTareaNombre(String tareaNombre) {
 		this.tareaNombre = tareaNombre;
 	}
 
-	public String getTareaDescrip() {
+    /**
+     *
+     * @return String
+     */
+    public String getTareaDescrip() {
 		return tareaDescrip;
 	}
 
-	public void setTareaDescrip(String tareaDescrip) {
+    /**
+     *
+     * @param tareaDescrip
+     */
+    public void setTareaDescrip(String tareaDescrip) {
 		this.tareaDescrip = tareaDescrip;
 	}
 
 	
 	//toString
+
+    /**
+     *
+     * @return String
+     */
 	@Override
 	public String toString() {
 		return "Tarea [tareaID=" + tareaID + ", tareaNombre=" + tareaNombre + ", tareaDescrip=" + tareaDescrip + "]";
@@ -67,12 +97,22 @@ public class Tarea {
 	
 	
 	//Hashcode y equals
+
+    /**
+     *
+     * @return int
+     */
 	@Override
 	public int hashCode() {
 		return Objects.hash(tareaDescrip, tareaID, tareaNombre);
 	}
 
-	@Override
+    /**
+     *
+     * @param obj
+     * @return boolean
+     */
+    @Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
@@ -84,6 +124,4 @@ public class Tarea {
 		return Objects.equals(tareaDescrip, other.tareaDescrip) && tareaID == other.tareaID
 				&& Objects.equals(tareaNombre, other.tareaNombre);
 	}
-	
-	
 }

@@ -23,21 +23,46 @@ private Maquina maquina;
 private Averia averia;
 
 //Metodos get y set de las variables
+
+    /**
+     *
+     * @param usuario
+     */
 public void setUsuarios(Usuario usuario) {
 this.usuarios.add(usuario);
 }
-public Maquina getMaquina() {
-return maquina;
-}
-public void setMaquina(Maquina maquina) {
-this.maquina = maquina;
-}
-public Averia getAveria() {
-return averia;
-}
-public void setAveria(Averia averia) {
-this.averia = averia;
-}
+
+    /**
+     *
+     * @return obj
+     */
+    public Maquina getMaquina() {
+        return maquina;
+    }
+
+    /**
+     *
+     * @param maquina
+     */
+    public void setMaquina(Maquina maquina) {
+        this.maquina = maquina;
+    }
+
+    /**
+     *
+     * @return obj
+     */
+    public Averia getAveria() {
+        return averia;
+    }
+
+    /**
+     *
+     * @param averia
+     */
+    public void setAveria(Averia averia) {
+        this.averia = averia;
+    }
 
 
 //Constructores de la clase
@@ -55,11 +80,22 @@ this.averia = averia;
 
 
 //Metodos hashCode y equals
+
+    /**
+     *
+     * @return int
+     */
 @Override
 public int hashCode() {
-return Objects.hash(averia, maquina, usuarios);
+    return Objects.hash(averia, maquina, usuarios);
 }
-@Override
+
+    /**
+     *
+     * @param obj
+     * @return boolean
+     */
+    @Override
 public boolean equals(Object obj) {
 if (this == obj)
 return true;
@@ -72,33 +108,36 @@ return Objects.equals(averia, other.averia) && Objects.equals(maquina, other.maq
 && Objects.equals(usuarios, other.usuarios);
 }
 
+    /**
+     *
+     * @param ruta
+     * @param nombreFichero
+     */
+    public void imprimirReparacion(String ruta, String nombreFichero) {
+        try{ 
+         Iterator<Usuario> iterador = this.usuarios.iterator(); 
+         FileWriter fw = new FileWriter(ruta + nombreFichero); 
+         BufferedWriter bw = new BufferedWriter(fw); 
+         bw.write("Informe de reparación de avería: "); 
+         bw.newLine(); 
+         bw.write("Máquina: "); 
+         bw.write(this.maquina.toString()); 
+         bw.newLine(); 
+         bw.write("Averia: "); 
+         bw.write(this.averia.toString()); 
+         bw.newLine(); 
+         bw.write("Usuario(s)"); 
+         bw.newLine(); 
+         while (iterador.hasNext()){ 
+         bw.write(iterador.next().toString()); 
+         bw.newLine(); 
+         } 
+         bw.close(); 
+         fw.close(); 
+         }catch(IOException ioe){ 
+         System.out.println(ioe); 
 
-public void imprimirReparacion(String ruta, String nombreFichero) {
-try{ 
-
- Iterator<Usuario> iterador = this.usuarios.iterator(); 
- FileWriter fw = new FileWriter(ruta + nombreFichero); 
- BufferedWriter bw = new BufferedWriter(fw); 
- bw.write("Informe de reparación de avería: "); 
- bw.newLine(); 
- bw.write("Máquina: "); 
- bw.write(this.maquina.toString()); 
- bw.newLine(); 
- bw.write("Averia: "); 
- bw.write(this.averia.toString()); 
- bw.newLine(); 
- bw.write("Usuario(s)"); 
- bw.newLine(); 
- while (iterador.hasNext()){ 
- bw.write(iterador.next().toString()); 
- bw.newLine(); 
- } 
- bw.close(); 
- fw.close(); 
- }catch(IOException ioe){ 
- System.out.println(ioe); 
-
- } 
-}
+         } 
+        }
 
 }

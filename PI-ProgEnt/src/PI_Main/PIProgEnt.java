@@ -322,7 +322,6 @@ public class PIProgEnt {
                             + "3 - Buscar tarea por ID \n"
                             + "4 - Ver todas las tareas \n"
                             + "5 - Eliminar tarea \n"
-                            + "6 - Asignar tarea \n"
                             + "0 - Salir \n"
                     );
                     opt = sc.nextInt();
@@ -370,10 +369,6 @@ public class PIProgEnt {
                             tareaID = sc.nextInt();
                             sc.nextLine();
                             gest.eliminarTarea(tareaID);
-                            opt=0;
-                            break;
-                        case 6:
-                            //code
                             opt=0;
                             break;
                     }

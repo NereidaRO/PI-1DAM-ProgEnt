@@ -29,21 +29,10 @@ public class EjecutaTarea {
         this.tarea = tarea;
         this.ejecutor = new ArrayList<Usuario>();
     }
-    //Como los usuarios pueden ser uno o más, es conveniente que el administrador asigne una tarea en dos pasos: crearla y asignarla.
 
     /**
      *
-     * @param usuario Usuario
-     */
-    public void assignUser(Usuario usuario){
-        //El/los usuarios a los que se asigna la tarea ya están creados
-        //Esta función añade 1 usuario, pero se gestiona su repetición con un menú en Main
-        this.ejecutor.add(usuario);
-    }
-
-    /**
-     *
-     * @return Maquina
+     * @return obj
      */
     public Maquina getMaquina() {
         return maquina;
@@ -59,7 +48,7 @@ public class EjecutaTarea {
 
     /**
      *
-     * @return Tarea
+     * @return obj
      */
     public Tarea getTarea() {
         return tarea;
@@ -75,7 +64,7 @@ public class EjecutaTarea {
 
     /**
      *
-     * @return ArrayList Usuario
+     * @return ArrayList obj
      */
     public ArrayList<Usuario> getEjecutor() {
         return ejecutor;
@@ -97,7 +86,7 @@ public class EjecutaTarea {
 
     /**
      *
-     * @return hash
+     * @return int
      */
     @Override
     public int hashCode() {
@@ -136,7 +125,7 @@ public class EjecutaTarea {
 
     /**
      *
-     * @return String y mensaje
+     * @return String
      */
     @Override
     public String toString() {
@@ -158,7 +147,7 @@ public class EjecutaTarea {
      *
      * @param ruta
      * @param nombreFichero
-     * @return fichero
+     * @return file
      */
      public void informeEjecucion(String ruta, String nombreFichero){
         try{

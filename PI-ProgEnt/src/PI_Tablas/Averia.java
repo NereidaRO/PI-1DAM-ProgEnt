@@ -23,52 +23,125 @@ private String comentario;
 private int reportador;
 
 //Metodos get y set de las variables
+
+    /**
+     *
+     * @return int
+     */
 public int getAveriaID() {
 
     return averiaID;
 }
-public Date getFechaReporte() {
+
+    /**
+     *
+     * @return Date
+     */
+    public Date getFechaReporte() {
     return FechaReporte;
 }
-public void setFechaReporte(Date fechaReporte) {
+
+    /**
+     *
+     * @param fechaReporte
+     */
+    public void setFechaReporte(Date fechaReporte) {
     FechaReporte = fechaReporte;
 }
-public Date getFechaReparacion() {
+
+    /**
+     *
+     * @return Date
+     */
+    public Date getFechaReparacion() {
     return fechaReparacion;
 }
-public void setFechaReparacion(Date fechaReparacion) {
+
+    /**
+     *
+     * @param fechaReparacion
+     */
+    public void setFechaReparacion(Date fechaReparacion) {
     this.fechaReparacion = fechaReparacion;
 }
-public float getDuracion() {
+
+    /**
+     *
+     * @return float
+     */
+    public float getDuracion() {
     return duracion;
 }
-public void setDuracion(int duracion) {
+
+    /**
+     *
+     * @param duracion
+     */
+    public void setDuracion(int duracion) {
     this.duracion = duracion;
 }
-public int getCoste() {
+
+    /**
+     *
+     * @return int
+     */
+    public int getCoste() {
     return coste;
 }
-public void setCoste(int coste) {
+
+    /**
+     *
+     * @param coste
+     */
+    public void setCoste(int coste) {
     this.coste = coste;
 }
-public String getAveriaDescrip() {
+
+    /**
+     *
+     * @return String
+     */
+    public String getAveriaDescrip() {
     return averiaDescrip;
 }
-public void setAveriaDescrip(String averiaDescrip) {
+
+    /**
+     *
+     * @param averiaDescrip
+     */
+    public void setAveriaDescrip(String averiaDescrip) {
     this.averiaDescrip = averiaDescrip;
 }
-public String getComentario() {
+
+    /**
+     *
+     * @return String
+     */
+    public String getComentario() {
     return comentario;
 }
-public void setComentario(String comentario) {
+
+    /**
+     *
+     * @param comentario
+     */
+    public void setComentario(String comentario) {
     this.comentario = comentario;
 }
 
-public int getReportador() {
+    /**
+     *
+     * @return int
+     */
+    public int getReportador() {
     return reportador;
 }
 
-public void setReportador(int reportador) {
+    /**
+     *
+     * @param reportador
+     */
+    public void setReportador(int reportador) {
     this.reportador = reportador;
 }
 
@@ -96,11 +169,22 @@ public Averia() {
 }
 
 //Metodos hashCode y equals para comparar averias
+
+    /**
+     *
+     * @return int
+     */
 @Override
 public int hashCode() {
     return Objects.hash(FechaReporte, averiaDescrip, averiaID, comentario, coste, duracion, fechaReparacion);
 }
-@Override
+
+    /**
+     *
+     * @param obj
+     * @return boolean
+     */
+    @Override
 public boolean equals(Object obj) {
     if (this == obj)
         return true;
@@ -116,6 +200,11 @@ public boolean equals(Object obj) {
 }
 
 //Metodo toString
+
+    /**
+     *
+     * @return String
+     */
 @Override
 public String toString() {
     return "Averia [averiaID=" + averiaID + ", FechaReporte=" + FechaReporte + ", fechaReparacion="

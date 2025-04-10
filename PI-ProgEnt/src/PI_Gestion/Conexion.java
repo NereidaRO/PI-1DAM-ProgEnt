@@ -27,30 +27,54 @@ public class Conexion {
         this.contrasenya="k4t4kr0k3r"; 
     }
     
-
+    /**
+     *
+     * @return String
+     */
     public String getUrl() {
         return url;
     }
 
+    /**
+     *
+     * @param url
+     */
     public void setUrl(String url) {
         this.url = url;
     }
 
+    /**
+     *
+     * @return String
+     */
     public String getUsuario() {
         return usuario;
     }
 
+    /**
+     *
+     * @param usuario
+     */
     public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
     //La contraseña no debería poder modificarse ni consultarse: no getter ni setter
 
+    /**
+     *
+     * @return int
+     */
     @Override
     public int hashCode() {
         int hash = 3;
         return hash;
     }
 
+    /**
+     *
+     * @param obj
+     * @return boolean
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -69,11 +93,19 @@ public class Conexion {
         return Objects.equals(this.usuario, other.usuario);
     }
 
+    /**
+     *
+     * @return String
+     */
     @Override
     public String toString() {
         return "Conexion{" + "url=" + url + ", usuario=" + usuario + '}';
     }
     
+    /**
+     *
+     * @return obj
+     */
     public Connection getConection(){
         try{
             // Cargar el driver

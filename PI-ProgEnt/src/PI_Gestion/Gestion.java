@@ -26,11 +26,20 @@ public class Gestion {
         this.conexion = new Conexion();
     }
 
+    /**
+     *
+     * @return obj
+     */
     public Conexion getConexion() {
         return conexion;
     }
 
     //Hacer un método público setConexion() puede derivar en problemas de seguridad, ya que se podría redirigir la aplicación a otra base de datos.
+
+    /**
+     *
+     * @return int
+     */
 
     @Override
     public int hashCode() {
@@ -39,6 +48,11 @@ public class Gestion {
         return hash;
     }
 
+    /**
+     *
+     * @param obj
+     * @return boolean
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -54,12 +68,22 @@ public class Gestion {
         return Objects.equals(this.conexion, other.conexion);
     }
 
+    /**
+     *
+     * @return String
+     */
     @Override
     public String toString() {
         return "Gestion{" + "conexion=" + conexion + '}';
     }
     
     //Métodos de búsqueda + traspaso
+
+    /**
+     *
+     * @param idUsuario
+     * @return
+     */
     public Usuario buscarUsuario(int idUsuario){
         try {
 
@@ -106,6 +130,12 @@ public class Gestion {
 
     
     }
+
+    /**
+     *
+     * @param idAveria
+     * @return obj
+     */
     public Averia buscarAveria(int idAveria){
 
         try {
@@ -148,6 +178,12 @@ public class Gestion {
         return null;
         }
 }
+
+    /**
+     *
+     * @param idMaquina
+     * @return obj
+     */
     public Maquina buscarMaquina( int idMaquina){
         try {
             Connection c = conexion.getConection();
@@ -184,6 +220,12 @@ public class Gestion {
             return null;
         }
     }
+
+    /**
+     *
+     * @param idTarea
+     * @return obj
+     */
     public Tarea buscarTarea(int idTarea){
         try {
 
@@ -226,6 +268,10 @@ public class Gestion {
     }
     
     //Métodos de listado
+
+    /**
+     *
+     */
     public void listaUsuarios(){
         try {
 
@@ -256,6 +302,10 @@ public class Gestion {
         e.printStackTrace(); 
         }
     }
+
+    /**
+     *
+     */
     public void listaAverias(){
         try {
 
@@ -286,6 +336,10 @@ public class Gestion {
     }
 
     }
+
+    /**
+     *
+     */
     public void listaMaquinas(){
         try {
 
@@ -316,6 +370,10 @@ public class Gestion {
         e.printStackTrace(); 
         }
     }
+
+    /**
+     *
+     */
     public void listaTareas(){
     
         try {
@@ -345,6 +403,17 @@ public class Gestion {
     }
     
     //Métodos de creación
+
+    /**
+     *
+     * @param NIF
+     * @param nombre
+     * @param apellidos
+     * @param direccion
+     * @param email
+     * @param rol
+     * @param fechaNacim
+     */
     public void insertarUsuario(String NIF, String nombre, String apellidos, String direccion, String email, String rol, Date fechaNacim){
         /*los ID son autoincrementales, no se ponen en la inserción*/
         try{
@@ -388,6 +457,17 @@ public class Gestion {
         }
         
     }
+
+    /**
+     *
+     * @param fechaReporte
+     * @param fechaReparacion
+     * @param duracion
+     * @param coste
+     * @param averiaDescrip
+     * @param comentario
+     * @param usuarioID
+     */
     public void insertarAveria( Date fechaReporte, Date fechaReparacion, int duracion, int coste, String averiaDescrip, String comentario, int usuarioID){
 
         try {
@@ -439,6 +519,16 @@ public class Gestion {
         }
     }
 
+    /**
+     *
+     * @param maquinaDescrip
+     * @param tipo
+     * @param ubicacion
+     * @param horas
+     * @param estado
+     * @param fechaManten
+     * @param usuarioID
+     */
     public void insertarMaquina(String maquinaDescrip, String tipo, String ubicacion, int horas, boolean estado, Date fechaManten, int usuarioID){
 
         try {
@@ -490,6 +580,11 @@ public class Gestion {
         }
     }
 
+    /**
+     *
+     * @param tareaNombre
+     * @param tareaDescrip
+     */
     public void insertarTarea(String tareaNombre, String tareaDescrip){
 
         try {
@@ -527,6 +622,18 @@ public class Gestion {
     }
     
     //Métodos para modificar
+
+    /**
+     *
+     * @param ID
+     * @param NIF
+     * @param nombre
+     * @param apellidos
+     * @param direccion
+     * @param email
+     * @param rol
+     * @param fechaNacim
+     */
     public void modificarUsuario(int ID, String NIF, String nombre, String apellidos, String direccion, String email, String rol, Date fechaNacim){
         //buscar por ID
         //cambiar por datos nuevos
@@ -564,6 +671,18 @@ public class Gestion {
             e.printStackTrace();
         }
     }
+
+    /**
+     *
+     * @param ID
+     * @param fechaReporte
+     * @param fechaReparacion
+     * @param duracion
+     * @param coste
+     * @param averiaDescrip
+     * @param comentario
+     * @param usuarioID
+     */
     public void modificarAveria(int ID, Date fechaReporte, Date fechaReparacion, int duracion, int coste, String averiaDescrip, String comentario, int usuarioID){
         // Buscar por ID
         try{
@@ -609,6 +728,17 @@ public class Gestion {
             }
     }
 
+    /**
+     *
+     * @param maquinaID
+     * @param maquinaDescrip
+     * @param tipo
+     * @param ubicacion
+     * @param horas
+     * @param estado
+     * @param fechaManten
+     * @param responsableID
+     */
     public void modificarMaquina(int maquinaID, String maquinaDescrip, String tipo, String ubicacion, int horas, boolean estado, Date fechaManten, int responsableID) {
         // Buscar por maquinaID
         try {
@@ -653,7 +783,13 @@ public class Gestion {
         }
     }
 
-   public void modificarTarea(int tareaID, String tareaNombre, String tareaDescrip) {
+    /**
+     *
+     * @param tareaID
+     * @param tareaNombre
+     * @param tareaDescrip
+     */
+    public void modificarTarea(int tareaID, String tareaNombre, String tareaDescrip) {
         // Buscar por tareaID y cambiar por los nuevos datos
         try {
             Connection c = conexion.getConection();
@@ -686,6 +822,11 @@ public class Gestion {
 
     
     //Métodos para eliminar
+
+    /**
+     *
+     * @param ID
+     */
     public void eliminarUsuario(int ID){
         try{
             Connection c = conexion.getConection();
@@ -698,6 +839,11 @@ public class Gestion {
             e.printStackTrace();
         }
     }
+
+    /**
+     *
+     * @param averiaID
+     */
     public void eliminarAveria(int averiaID) {
         try {
             Connection c = conexion.getConection();
@@ -711,6 +857,10 @@ public class Gestion {
         }
     }
 
+    /**
+     *
+     * @param maquinaID
+     */
     public void eliminarMaquina(int maquinaID) {
         try {
             Connection c = conexion.getConection();
@@ -724,6 +874,10 @@ public class Gestion {
         }
     }
 
+    /**
+     *
+     * @param tareaID
+     */
     public void eliminarTarea(int tareaID) {
         try {
             Connection c = conexion.getConection();
