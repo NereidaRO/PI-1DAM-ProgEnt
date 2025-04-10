@@ -19,6 +19,7 @@ private int duracion;
 private int coste;
 private String averiaDescrip;
 private String comentario;
+ //Aunque esto sea redundante, no poner el reportador da conflictos con la base de datos
 private int reportador;
 
 //Metodos get y set de las variables
