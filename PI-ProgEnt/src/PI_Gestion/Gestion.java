@@ -890,5 +890,35 @@ public class Gestion {
             e.printStackTrace();
         }
     }
+    
+    public int buscarUsuarioPorId(int idUsuario){
+
+            Usuario usuario = null;
+            int usuariosAfectados = 0;
+
+            System.out.println("Entro en metodo buscarUsuarioPorId"); 
+
+        try {
+
+            Connection c = conexion.getConection(); 
+
+            java.sql.Statement stmt = c.createStatement();
+
+            String query = "select * "
+            + " from Usuario where usuarioID ="+ idUsuario;
+
+            ResultSet resultados = stmt.executeQuery(query);
+            usuariosAfectados = resultados.getRow();
+            System.out.println("Numero de usuarios afectados: "+ usuariosAfectados);
+
+        } catch (SQLException e) { 
+
+            System.out.println("Error: No se pudo conectar a la base de datos."); 
+
+        e.printStackTrace(); 
+        }
+            return usuariosAfectados;
+        }
+
 
 }
