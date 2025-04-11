@@ -92,7 +92,7 @@ public class Gestion {
             java.sql.Statement stmt = c.createStatement();
 
             String query = "select NIF, nombre, apellidos, direccion, email, rol, fechaNacim "
-            + "from Tarea where usuarioID ="+ idUsuario;
+            + "from Usuario where usuarioID ="+ idUsuario;
 
             ResultSet resultados = stmt.executeQuery(query);
 
